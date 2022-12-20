@@ -1,10 +1,14 @@
 import Link from 'next/link'
 
+import { CartIcon } from './CartIcon'
+import { MenuIcon } from './MenuIcon'
+import { SearchIcon } from './SearchIcon'
+
 interface Props {}
 
 export const Navbar = (props: Props) => {
   return (
-    <nav className="flex justify-between p-8">
+    <nav className="flex justify-between items-center p-8">
       <section>
         <Link className="" href="/">
           Teslo | Shop
@@ -24,11 +28,15 @@ export const Navbar = (props: Props) => {
         </ul>
       </section>
       <section className="flex gap-4">
-        <div>
-          <input placeholder="search" />
-        </div>
-        <Link href="/cart">Carrito icono</Link>
-        <div>Menu</div>
+        <button>
+          <SearchIcon />
+        </button>
+        <Link href="/cart">
+          <CartIcon />
+        </Link>
+        <button>
+          <MenuIcon />
+        </button>
       </section>
     </nav>
   )
