@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${inter.className} font-sans`}>
+    <main className={`${inter.className}`}>
       <Component {...pageProps} />
     </main>
   )
