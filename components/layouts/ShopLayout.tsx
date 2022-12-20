@@ -22,8 +22,7 @@ export const ShopLayout = ({ children, title, description, imageFullUrl }: Props
 
       <Navbar />
 
-      {'sidebar'}
-      <main className="mt-20 max-w-screen-2xl px-8 ">{children}</main>
+      <main className="mt-20 max-w-screen-2xl px-8 mx-auto">{children}</main>
 
       <footer>Footer</footer>
     </>
