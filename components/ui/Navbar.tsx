@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-import { CartIcon } from './CartIcon'
-import { MenuIcon } from './MenuIcon'
-import { SearchIcon } from './SearchIcon'
+import { CartIcon } from './icons/CartIcon'
+import { MenuIcon } from './icons/MenuIcon'
+import { SearchIcon } from './icons/SearchIcon'
 
 interface Props {}
 
