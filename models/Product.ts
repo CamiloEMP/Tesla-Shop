@@ -65,5 +65,7 @@ const productSchema = new Schema(
   }
 )
 
+productSchema.index({ title: 'text', tags: 'text' })
+
 export const ProductModel: Model<Product> =
   mongoose.models.Product ?? model('Product', productSchema)
