@@ -10,6 +10,8 @@ export interface Product {
   title: string
   type: Type
   gender: 'men' | 'women' | 'kid' | 'unisex'
+  createdAt: string
+  updatedAt: string
 }
 
 export type Size = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL'
