@@ -1,12 +1,14 @@
+import { GetStaticPaths, GetStaticProps } from 'next'
+
 import { ShopLayout } from 'components/layouts/ShopLayout'
 import { ItemCounter } from 'components/products/ItemCounter'
 import { ProductSlideShow } from 'components/products/ProductSlideShow'
 import { SizeSelector } from 'components/products/SizeSelector'
-import { initialData } from 'data/products'
+import { Product } from 'interfaces/products'
+import { getProducts } from 'services'
+import { getProductBySlug } from 'services/getProductBySlug'
 
-const product = initialData.products[0]
-
-const ProductPage = () => {
+const ProductPage = ({ product }: { product: Product }) => {
   return (
     <ShopLayout
       description={product.description}
@@ -44,6 +46,45 @@ const ProductPage = () => {
       </section>
     </ShopLayout>
   )
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const slugs = await getProducts({
+    fieldsSelected: 'slug -_id',
+  })
+  const paths = slugs.map(({ slug }) => ({
+    params: {
+      slug,
+    },
+  }))
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const slug = params?.slug as string
+
+  const product = await getProductBySlug(slug)
+
+  if (!product) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+        statusCode: 404,
+      },
+    }
+  }
+
+  return {
+    props: {
+      product,
+    },
+    revalidate: 86400,
+  }
 }
 
 export default ProductPage
