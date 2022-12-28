@@ -6,6 +6,7 @@ import { useProduct } from 'hooks/useProducts'
 import { Loading } from 'components/ui/Loading'
 import { ShopLayout } from 'components/layouts/ShopLayout'
 import { ProductList } from 'components/products/ProductList'
+import { Product } from 'interfaces/products'
 
 const GenderPage = () => {
   const { query, push } = useRouter()
@@ -18,7 +19,7 @@ const GenderPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gender])
 
-  const { products, isLoading } = useProduct(`/products?gender=${gender}`)
+  const { products, isLoading } = useProduct<Product[]>(`/products?gender=${gender}`)
 
   return (
     <ShopLayout

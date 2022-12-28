@@ -1,12 +1,10 @@
 import useSWR, { SWRConfiguration } from 'swr'
 
-import { Product } from 'interfaces/products'
-
-export const useProduct = (url: string, config: SWRConfiguration = {}) => {
-  const { data, error, isLoading } = useSWR<Product[]>(`/api${url}`, config)
+export const useProduct = <T>(url: string, config: SWRConfiguration = {}) => {
+  const { data, error, isLoading } = useSWR<T>(`/api${url}`, config)
 
   return {
-    products: data ?? [],
+    products: data,
     isLoading,
     isError: error,
   }

@@ -2,9 +2,10 @@ import { ShopLayout } from 'components/layouts/ShopLayout'
 import { ProductList } from 'components/products/ProductList'
 import { Loading } from 'components/ui/Loading'
 import { useProduct } from 'hooks/useProducts'
+import { Product } from 'interfaces/products'
 
 export default function Home() {
-  const { products, isLoading } = useProduct('/products')
+  const { products, isLoading } = useProduct<Product[]>('/products')
 
   return (
     <ShopLayout description="Encuentra los mejores productos aqui" title="Teslo shop - home">
