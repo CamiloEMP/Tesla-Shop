@@ -1,13 +1,16 @@
 import { ShopLayout } from 'components/layouts/ShopLayout'
-import { initialData } from 'data/products'
 import { ProductList } from 'components/products/ProductList'
+import { Loading } from 'components/ui/Loading'
+import { useProduct } from 'hooks/useProducts'
 
 export default function Home() {
+  const { products, isLoading } = useProduct('/products')
+
   return (
     <ShopLayout description="Encuentra los mejores productos aqui" title="Teslo shop - home">
       <h1>Teslo Shop</h1>
       <h3>Todos los productos</h3>
-      <ProductList products={initialData.products as any} />
+      {isLoading ? <Loading /> : <ProductList products={products} />}
     </ShopLayout>
   )
 }

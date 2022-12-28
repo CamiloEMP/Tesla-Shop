@@ -1,8 +1,13 @@
+const Carousel = dynamic(() => import('@brainhubeu/react-carousel'), {
+  ssr: false,
+})
+
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import '@brainhubeu/react-carousel/lib/style.css'
-import Carousel, { arrowsPlugin } from '@brainhubeu/react-carousel'
+import { arrowsPlugin } from '@brainhubeu/react-carousel'
 
 import { LeftArrowIcon, RightArrowIcon } from 'components/ui/icons'
+import '@brainhubeu/react-carousel/lib/style.css'
 
 interface Props {
   images: string[]

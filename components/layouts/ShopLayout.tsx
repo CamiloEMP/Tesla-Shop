@@ -22,7 +22,7 @@ export const ShopLayout = ({ children, title, description, imageFullUrl }: Props
       </Head>
 
       <Navbar />
-      {/* <SideMenu /> */}
+      <SideMenu />
 
       <main className="px-8 mx-auto mt-20 max-w-screen-2xl">{children}</main>
 

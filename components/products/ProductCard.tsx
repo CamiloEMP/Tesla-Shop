@@ -13,7 +13,7 @@ export const ProductCard = ({ title, price, images, slug }: Product) => {
 
   return (
     <Link
-      className=" w-72"
+      className="w-72"
       href={`/product/${slug}`}
       prefetch={false}
       onMouseEnter={() => hovered(true)}
