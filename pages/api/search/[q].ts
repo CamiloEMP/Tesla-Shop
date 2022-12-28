@@ -9,11 +9,18 @@ export type DataSearchProduct =
     }
   | Product[]
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<DataSearchProduct>) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<DataSearchProduct>
+) {
   switch (req.method) {
     case 'GET':
-      return searchProducts(req, res)
+      const { q = '' } = req.query
 
+      if (q.length === 0) res.status(400)
+      const products = await searchProducts(`${q}`)
+
+      return res.status(200).json(products)
     default:
       res.setHeader('Allow', ['GET'])
 

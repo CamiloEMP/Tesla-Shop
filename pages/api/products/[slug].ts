@@ -12,7 +12,14 @@ export type DataProductSlug =
 export default async function handler(req: NextApiRequest, res: NextApiResponse<DataProductSlug>) {
   switch (req.method) {
     case 'GET':
-      return getProductBySlug(req, res)
+      const { slug } = req.query
+      const product = await getProductBySlug(`${slug}`)
+
+      if (product) return res.status(200).json(product)
+
+      return res.status(404).json({
+        message: 'El producto no existe',
+      })
 
     default:
       res.setHeader('Allow', ['GET'])
